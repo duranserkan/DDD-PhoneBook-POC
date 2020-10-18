@@ -2,15 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace PhoneBook.Api.Controllers
+namespace Reporting.Api.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
-	public class PersonController : ControllerBase
+	public class LocationReportController : ControllerBase
 	{
-		private readonly ILogger<PersonController> _logger;
+		private readonly ILogger<LocationReportController> _logger;
 
-		public PersonController(ILogger<PersonController> logger)
+		public LocationReportController(ILogger<LocationReportController> logger)
 		{
 			_logger = logger;
 		}

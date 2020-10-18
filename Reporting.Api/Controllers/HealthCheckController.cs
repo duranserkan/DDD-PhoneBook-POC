@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace PhoneBook.Api.Controllers
+namespace Reporting.Api.Controllers
 {
 	[ApiController]
 	[Route("")]

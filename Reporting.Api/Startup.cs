@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace PhoneBook.Api
+namespace Reporting.Api
 {
 	public class Startup
 	{
@@ -42,10 +42,9 @@ namespace PhoneBook.Api
 			app.UseSwagger();
 			app.UseSwaggerUI(c =>
 			{
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "PhoneBook Api V1");
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Reporting Api V1");
 				c.RoutePrefix = string.Empty;
 			});
-
 		}
 	}
 }

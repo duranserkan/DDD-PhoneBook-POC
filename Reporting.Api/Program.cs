@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace PhoneBook.Api
+namespace Reporting.Api
 {
 	public class Program
 	{
