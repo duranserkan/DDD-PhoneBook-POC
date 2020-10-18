@@ -3,7 +3,7 @@ using SharedKernel;
 
 namespace PhoneBook.Domain.PersonAggregate.Events
 {
-	public class PersonDeleted : DomainEvent
+	public class PersonCreatedEvent : DomainEvent
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }

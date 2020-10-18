@@ -3,7 +3,7 @@ using System;
 
 namespace PhoneBook.Domain.PersonAggregate.Events
 {
-	public class LocationRemoved : DomainEvent
+	public class PhoneAddedEvent:DomainEvent
 	{
 		public Guid ContactId { get; set; }
 		public string Content { get; set; }

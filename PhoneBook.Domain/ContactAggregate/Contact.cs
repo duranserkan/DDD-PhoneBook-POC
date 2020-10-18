@@ -9,6 +9,5 @@ namespace PhoneBook.Domain.ContactAggregate
 	{
 		public ContactType ContactType { get; set; }
 		public string Content { get; set; }
-		public Guid PersonId { get; set; }
 	}
 }

@@ -8,6 +8,5 @@ namespace PhoneBook.Domain.ContactAggregate.Events
 		public Guid Id { get; set; }
 		public ContactType ContactType { get; set; }
 		public string Content { get; set; }
-		public Guid PersonId { get; set; }
 	}
 }

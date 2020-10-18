@@ -17,11 +17,10 @@ namespace PhoneBook.Domain.PersonAggregate
 
 		public void AddPhone(Contact phoneContact)
 		{
-			if (phoneContact.PersonId != Id) throw new ConsistencyException("Person Id mismatch");
 			if (phoneContact.ContactType != ContactType.Phone) throw new ConsistencyException("Contact type must be phone");
 			if (PhoneId != null) throw new ConsistencyException("Phone id must be empty");
 			PhoneId = phoneContact.Id;
-			Events.Add(new PhoneAdded
+			Events.Add(new PhoneAddedEvent
 			{
 				PersonId = Id,
 				ContactId = phoneContact.Id,
@@ -31,11 +30,10 @@ namespace PhoneBook.Domain.PersonAggregate
 
 		public void RemovePhone(Contact phoneContact)
 		{
-			if (phoneContact.PersonId != Id) throw new ConsistencyException("Person Id mismatch");
 			if (phoneContact.ContactType != ContactType.Phone) throw new ConsistencyException("Contact type must be phone");
 			if (PhoneId == null) throw new ConsistencyException("Phone id not found");
 			PhoneId = null;
-			Events.Add(new PhoneRemoved()
+			Events.Add(new PhoneRemovedEvent()
 			{
 				PersonId = Id,
 				ContactId = phoneContact.Id ,
@@ -45,11 +43,10 @@ namespace PhoneBook.Domain.PersonAggregate
 
 		public void AddEmail(Contact emailContact)
 		{
-			if (emailContact.PersonId != Id) throw new ConsistencyException("Person Id mismatch");
 			if (emailContact.ContactType != ContactType.Email) throw new ConsistencyException("Contact type must be email");
 			if (EmailId != null) throw new ConsistencyException("Email id must be empty");
 			EmailId = emailContact.Id;
-			Events.Add(new EmailAdded()
+			Events.Add(new EmailAddedEvent()
 			{
 				PersonId = Id,
 				ContactId = emailContact.Id,
@@ -59,11 +56,10 @@ namespace PhoneBook.Domain.PersonAggregate
 
 		public void RemoveEmail(Contact emailContact)
 		{
-			if (emailContact.PersonId != Id) throw new ConsistencyException("Person Id mismatch");
 			if (emailContact.ContactType != ContactType.Email) throw new ConsistencyException("Contact type must be email");
 			if (EmailId == null) throw new ConsistencyException("Email id not found");
 			EmailId = null;
-			Events.Add(new EmailRemoved()
+			Events.Add(new EmailRemovedEvent()
 			{
 				PersonId = Id,
 				ContactId = emailContact.Id,
@@ -73,11 +69,10 @@ namespace PhoneBook.Domain.PersonAggregate
 
 		public void AddLocation(Contact locationContact)
 		{
-			if (locationContact.PersonId != Id) throw new ConsistencyException("Person Id mismatch");
 			if (locationContact.ContactType != ContactType.Location) throw new ConsistencyException("Contact type must be location");
 			if (LocationId != null) throw new ConsistencyException("Location id must be empty");
 			LocationId = locationContact.Id;
-			Events.Add(new LocationAdded()
+			Events.Add(new LocationAddedEvent()
 			{
 				PersonId = Id,
 				ContactId = locationContact.Id,
@@ -87,11 +82,10 @@ namespace PhoneBook.Domain.PersonAggregate
 
 		public void RemoveLocation(Contact locationContact)
 		{
-			if (locationContact.PersonId != Id) throw new ConsistencyException("Person Id mismatch");
 			if (locationContact.ContactType != ContactType.Location) throw new ConsistencyException("Contact type must be location");
 			if (LocationId == null) throw new ConsistencyException("Location not found");
 			LocationId = null;
-			Events.Add(new LocationRemoved()
+			Events.Add(new LocationRemovedEvent()
 			{
 				PersonId = Id,
 				ContactId = locationContact.Id,
