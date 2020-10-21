@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\PhoneBook.Contract\PhoneBook.Contract.csproj" />
     <ProjectReference Include="..\PhoneBook.Domain\PhoneBook.Domain.csproj" />

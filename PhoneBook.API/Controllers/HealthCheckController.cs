@@ -17,7 +17,7 @@ namespace PhoneBook.Api.Controllers
 		}
 
 		[HttpGet("healthcheck")]
-		public async Task<IActionResult> HealthCheck()
+		public IActionResult HealthCheck()
 		{
 			return Ok(Environment.MachineName);
 		}

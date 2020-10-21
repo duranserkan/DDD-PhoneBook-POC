@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SharedKernel.Interfaces
 {
-	public interface IUnitOfWork
+	public interface IUnitOfWork : IDisposable
 	{
 		Task SaveChangesAsync();
 	}

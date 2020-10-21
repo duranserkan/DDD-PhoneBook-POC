@@ -1,12 +1,11 @@
-﻿using System;
-using System.Net;
-using System.Threading.Tasks;
-using Common.Models;
+﻿using Common.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhoneBook.Application.Services;
-using PhoneBook.Contract.Requests;
 using PhoneBook.Contract.Requests.Phone;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace PhoneBook.Api.Controllers
 {
