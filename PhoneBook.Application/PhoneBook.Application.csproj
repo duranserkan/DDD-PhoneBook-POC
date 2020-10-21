@@ -9,6 +9,7 @@
     <ProjectReference Include="..\PhoneBook.Contract\PhoneBook.Contract.csproj" />
     <ProjectReference Include="..\PhoneBook.Domain\PhoneBook.Domain.csproj" />
     <ProjectReference Include="..\PhoneBook.Infrastructure\PhoneBook.Infrastructure.csproj" />
+    <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

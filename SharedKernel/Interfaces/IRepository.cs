@@ -8,6 +8,8 @@ namespace SharedKernel.Interfaces
 	{
 		Task<T> GetByIdAsync(Guid id);
 		Task<List<T>> ListAsync();
+		Task<List<T>> ListAsync(int skip, int take);
+		Task<int> CountAsync();
 		Task<T> AddAsync(T aggregateRoot);
 		Task UpdateAsync(T aggregateRoot);
 		Task DeleteAsync(T aggregateRoot);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PhoneBook.Contract
+namespace PhoneBook.Contract.Events
 {
 	public class PhoneRemovedFromLocationEvent
 	{

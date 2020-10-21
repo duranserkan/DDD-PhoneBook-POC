@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PhoneBook.Contract
+namespace PhoneBook.Contract.Events
 {
 	public class LocationDeleted
 	{

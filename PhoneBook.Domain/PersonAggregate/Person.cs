@@ -8,6 +8,18 @@ namespace PhoneBook.Domain.PersonAggregate
 {
 	public class Person : Entity, IAggregateRoot
 	{
+		private Person() { }
+
+		public Person(string name, string surname, string companyName, Guid? phoneId, Guid? emailId, Guid? locationId)
+		{
+			Name = name;
+			Surname = surname;
+			CompanyName = companyName;
+			PhoneId = phoneId;
+			EmailId = emailId;
+			LocationId = locationId;
+		}
+
 		public string Name { get; set; }
 		public string Surname { get; set; }
 		public string CompanyName { get; set; }

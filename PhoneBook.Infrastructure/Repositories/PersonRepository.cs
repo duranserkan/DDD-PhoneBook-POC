@@ -18,6 +18,16 @@ namespace PhoneBook.Infrastructure.Repositories
 			throw new NotImplementedException();
 		}
 
+		public Task<List<Person>> ListAsync(int skip, int take)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<int> CountAsync()
+		{
+			throw new NotImplementedException();
+		}
+
 		public Task<Person> AddAsync(Person aggregateRoot)
 		{
 			throw new NotImplementedException();
