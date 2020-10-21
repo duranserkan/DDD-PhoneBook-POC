@@ -11,6 +11,7 @@ namespace PhoneBook.Infrastructure.DbContext
 			builder.HasKey(contact => contact.Id);
 			builder.Property(contact => contact.Content).HasMaxLength(256).IsRequired();
 			builder.Property(contact => contact.ContactType);
+			builder.Ignore(x => x.Events);
 		}
 	}
 }

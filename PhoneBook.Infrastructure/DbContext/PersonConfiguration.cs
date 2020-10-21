@@ -18,6 +18,7 @@ namespace PhoneBook.Infrastructure.DbContext
 			builder.Property(person => person.PhoneId);
 			builder.Property(person => person.EmailId);
 			builder.Property(person => person.LocationId);
+			builder.Ignore(x => x.Events);
 		}
 	}
 }

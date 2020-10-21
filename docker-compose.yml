@@ -1,0 +1,31 @@
+services:
+  phoneBookDb:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes: 
+      - phoneBookDb-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: example
+      POSTGRES_DB: PhoneBookDb
+  reportingDb:
+    image: postgres
+    ports:
+      - 5433:5432
+    volumes: 
+      - reportingDb-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: example
+      POSTGRES_DB: ReportingDb
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+volumes:
+  phoneBookDb-data:
+  reportingDb-data:
