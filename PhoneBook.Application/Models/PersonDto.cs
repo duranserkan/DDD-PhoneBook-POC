@@ -1,13 +1,13 @@
-﻿using System;
+﻿using PhoneBook.Domain.PersonAggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using PhoneBook.Domain.PersonAggregate;
 
 namespace PhoneBook.Application.Models
 {
 	public class PersonDto
 	{
+		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public string Surname { get; set; }
 		public string CompanyName { get; set; }
@@ -21,6 +21,7 @@ namespace PhoneBook.Application.Models
 
 			return new PersonDto
 			{
+				Id=person.Id,
 				Name = person.Name,
 				Surname = person.Surname,
 				CompanyName = person.CompanyName,

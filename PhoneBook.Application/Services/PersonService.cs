@@ -6,6 +6,7 @@ using PhoneBook.Domain.PersonAggregate;
 using SharedKernel.Interfaces;
 using System;
 using System.Threading.Tasks;
+using PhoneBook.Contract.Requests.Phone;
 
 namespace PhoneBook.Application.Services
 {
@@ -14,7 +15,7 @@ namespace PhoneBook.Application.Services
 		Task<PagedResponse<PersonDto>> GetPeopleAsync(PageFilter pageFilter);
 		Task<PersonDto> GetPersonAsync(Guid personId);
 		Task<PersonDto> SaveAsync(PostPersonRequest request);
-		Task<PersonDto> UpdateAsync(PatchPersonRequest request);
+		Task<PersonDto> PatchAsync(PatchPersonRequest request);
 		Task<PersonDto> DeletePersonAsync(Guid personId);
 	}
 
@@ -59,7 +60,7 @@ namespace PhoneBook.Application.Services
 			return PersonDto.MapFrom(person);
 		}
 
-		public async Task<PersonDto> UpdateAsync(PatchPersonRequest request)
+		public async Task<PersonDto> PatchAsync(PatchPersonRequest request)
 		{
 			if (request.PersonId == default) throw new ArgumentException("PersonId can not be empty");
 

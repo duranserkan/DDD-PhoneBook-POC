@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace PhoneBook.Contract.Requests
+namespace PhoneBook.Contract.Requests.Phone
 {
 	public class PostPersonRequest
 	{

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhoneBook.Application.Services;
 using PhoneBook.Contract.Requests;
+using PhoneBook.Contract.Requests.Phone;
 
 namespace PhoneBook.Api.Controllers
 {
@@ -62,7 +63,7 @@ namespace PhoneBook.Api.Controllers
 
 			request.PersonId = personId;
 
-			await _personService.UpdateAsync(request);
+			await _personService.PatchAsync(request);
 
 			return Ok();
 		}

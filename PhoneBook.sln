@@ -46,7 +46,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reporting.Domain", "Reporti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reporting.Infrastructure", "Reporting.Infrastructure\Reporting.Infrastructure.csproj", "{96B3F791-4708-4CDB-A84A-416BCBC90A78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Testing", "Common.Testing\Common.Testing.csproj", "{78A3DA95-54DF-49D4-820C-B3A8CAB2357B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Testing", "Common.Testing\Common.Testing.csproj", "{78A3DA95-54DF-49D4-820C-B3A8CAB2357B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

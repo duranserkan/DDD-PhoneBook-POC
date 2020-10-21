@@ -12,7 +12,11 @@ namespace PhoneBook.Domain.PersonAggregate
 
 		public Person(string name, string surname, string companyName, Guid? phoneId, Guid? emailId, Guid? locationId)
 		{
+			if (!string.IsNullOrWhiteSpace(name))
+				throw new ArgumentException("Name can not be empty or whitespace");
 			Name = name;
+			if (!string.IsNullOrWhiteSpace(surname))
+				throw new ArgumentException("Surname can not be empty or whitespace");
 			Surname = surname;
 			CompanyName = companyName;
 			PhoneId = phoneId;
@@ -48,7 +52,7 @@ namespace PhoneBook.Domain.PersonAggregate
 			Events.Add(new PhoneRemovedEvent()
 			{
 				PersonId = Id,
-				ContactId = phoneContact.Id ,
+				ContactId = phoneContact.Id,
 				Content = phoneContact.Content
 			});
 		}
