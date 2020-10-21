@@ -1,45 +1,50 @@
 ﻿using PhoneBook.Domain.ContactAggregate;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using PhoneBook.Infrastructure.DbContext;
 
 namespace PhoneBook.Infrastructure.Repositories
 {
 	public class ContactRepository : IContactRepository
 	{
-		public Task<Contact> GetByIdAsync(Guid id)
+		private readonly PhoneBookDbContext _dbContext;
+
+		public ContactRepository(PhoneBookDbContext dbContext)
 		{
-			throw new NotImplementedException();
+			_dbContext = dbContext;
 		}
 
-		public Task<List<Contact>> ListAsync()
+		public async Task<Contact> GetByIdAsync(Guid id)
 		{
-			throw new NotImplementedException();
+			return await _dbContext.Contacts.FindAsync(id);
 		}
 
-		public Task<List<Contact>> ListAsync(int skip, int take)
+		public async Task<List<Contact>> ListAsync()
 		{
-			throw new NotImplementedException();
+			return await _dbContext.Contacts.ToListAsync();
 		}
 
-		public Task<int> CountAsync()
+		public async Task<List<Contact>> ListAsync(int skip, int take)
 		{
-			throw new NotImplementedException();
+			return await _dbContext.Contacts.Skip(skip).Take(take).ToListAsync();
 		}
 
-		public Task<Contact> AddAsync(Contact aggregateRoot)
+		public async Task<int> CountAsync()
 		{
-			throw new NotImplementedException();
+			return await _dbContext.Contacts.CountAsync();
 		}
 
-		public Task UpdateAsync(Contact aggregateRoot)
+		public async Task AddAsync(Contact aggregateRoot)
 		{
-			throw new NotImplementedException();
+			await _dbContext.Contacts.AddAsync(aggregateRoot);
 		}
-
-		public Task DeleteAsync(Contact aggregateRoot)
+		
+		public void Delete(Contact aggregateRoot)
 		{
-			throw new NotImplementedException();
+			_dbContext.Contacts.Remove(aggregateRoot);
 		}
 	}
 }

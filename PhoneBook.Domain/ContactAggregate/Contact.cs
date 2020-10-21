@@ -12,7 +12,7 @@ namespace PhoneBook.Domain.ContactAggregate
 			if (!Enum.IsDefined(typeof(ContactType), contactType))
 				throw new ArgumentException("Contact type must be defined");
 			ContactType = contactType;
-			if (!string.IsNullOrWhiteSpace(content))
+			if (string.IsNullOrWhiteSpace(content))
 				throw new ArgumentException("Content can not be empty or whitespace");
 			Content = content;
 		}

@@ -12,10 +12,10 @@ namespace PhoneBook.Domain.PersonAggregate
 
 		public Person(string name, string surname, string companyName, Guid? phoneId, Guid? emailId, Guid? locationId)
 		{
-			if (!string.IsNullOrWhiteSpace(name))
+			if (string.IsNullOrWhiteSpace(name))
 				throw new ArgumentException("Name can not be empty or whitespace");
 			Name = name;
-			if (!string.IsNullOrWhiteSpace(surname))
+			if (string.IsNullOrWhiteSpace(surname))
 				throw new ArgumentException("Surname can not be empty or whitespace");
 			Surname = surname;
 			CompanyName = companyName;

@@ -53,7 +53,7 @@ namespace PhoneBook.Application.Services
 		public async Task<PersonDto> SaveAsync(PostPersonRequest request)
 		{
 			var person = new Person(request.Name, request.Surname, request.CompanyName, request.PhoneId, request.EmailId, request.LocationId);
-			person = await _personRepository.AddAsync(person);
+			await _personRepository.AddAsync(person);
 			await _unitOfWork.SaveChangesAsync();
 			//Todo: publish person created event
 
@@ -98,7 +98,8 @@ namespace PhoneBook.Application.Services
 			var person = await _personRepository.GetByIdAsync(personId);
 			if (person != null)
 			{
-				await _personRepository.DeleteAsync(person);
+				_personRepository.Delete(person);
+				await _unitOfWork.SaveChangesAsync();
 				//Todo: publish person deleted event
 			}
 

@@ -29,9 +29,9 @@ namespace PhoneBook.Application.Services
 
 		public async Task<PagedResponse<ContactDto>> GetContactsAsync(PageFilter pageFilter)
 		{
-			var people = await _contactRepository.ListAsync(pageFilter.Skip, pageFilter.PageSize);
+			var contacts = await _contactRepository.ListAsync(pageFilter.Skip, pageFilter.PageSize);
 			var totalCount = await _contactRepository.CountAsync();
-			var response = new PagedResponse<ContactDto>(ContactDto.MapFrom(people), pageFilter.PageNumber, pageFilter.PageSize, totalCount);
+			var response = new PagedResponse<ContactDto>(ContactDto.MapFrom(contacts), pageFilter.PageNumber, pageFilter.PageSize, totalCount);
 
 			return response;
 		}
@@ -48,7 +48,7 @@ namespace PhoneBook.Application.Services
 		public async Task<ContactDto> SaveAsync(PostContactRequest request)
 		{
 			var contact = new Contact(request.ContactType, request.Content);
-			contact = await _contactRepository.AddAsync(contact);
+			await _contactRepository.AddAsync(contact);
 			await _unitOfWork.SaveChangesAsync();
 			//Todo: publish contact created event
 
@@ -61,7 +61,8 @@ namespace PhoneBook.Application.Services
 			var contact = await _contactRepository.GetByIdAsync(contactId);
 			if (contact != null)
 			{
-				await _contactRepository.DeleteAsync(contact);
+				_contactRepository.Delete(contact);
+				await _unitOfWork.SaveChangesAsync();
 				//Todo: publish Contact deleted event
 			}
 
