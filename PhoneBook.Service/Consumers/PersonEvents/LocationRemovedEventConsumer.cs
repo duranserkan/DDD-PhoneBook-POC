@@ -1,15 +1,19 @@
 ﻿using MassTransit;
+using PhoneBook.Contract.Events;
 using PhoneBook.Domain.PersonAggregate.Events;
-using System;
 using System.Threading.Tasks;
 
 namespace PhoneBook.Service.Consumers.PersonEvents
 {
 	public class LocationRemovedEventConsumer : IConsumer<LocationRemovedEvent>
 	{
-		public Task Consume(ConsumeContext<LocationRemovedEvent> context)
+		public async Task Consume(ConsumeContext<LocationRemovedEvent> context)
 		{
-			throw new NotImplementedException();
+			var personRemovedFromLocation = new PersonRemovedFromLocationEvent(
+				context.Message.PersonId,
+				context.Message.ContactId);
+
+			await context.Publish(personRemovedFromLocation);
 		}
 	}
 }

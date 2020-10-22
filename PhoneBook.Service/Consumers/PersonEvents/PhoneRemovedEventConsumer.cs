@@ -1,15 +1,30 @@
-﻿using System;
-using System.Threading.Tasks;
-using MassTransit;
+﻿using MassTransit;
+using PhoneBook.Application.Services;
+using PhoneBook.Contract.Events;
 using PhoneBook.Domain.PersonAggregate.Events;
+using System.Threading.Tasks;
 
 namespace PhoneBook.Service.Consumers.PersonEvents
 {
 	public class PhoneRemovedEventConsumer : IConsumer<PhoneRemovedEvent>
 	{
-		public Task Consume(ConsumeContext<PhoneRemovedEvent> context)
+		private readonly IPersonService _personService;
+
+		public PhoneRemovedEventConsumer(IPersonService personService)
 		{
-			throw new NotImplementedException();
+			_personService = personService;
+		}
+
+		public async Task Consume(ConsumeContext<PhoneRemovedEvent> context)
+		{
+			var person = await _personService.GetPersonAsync(context.Message.PersonId);
+			if (person.LocationId == null) return;
+
+			var phoneJoinedLocation = new PhoneRemovedFromLocationEvent(
+				context.Message.ContactId,
+				person.LocationId.Value);
+
+			await context.Publish(phoneJoinedLocation);
 		}
 	}
 }
