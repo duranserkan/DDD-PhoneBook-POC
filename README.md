@@ -2,7 +2,7 @@
 This repository contains requirements, codes, test and docs for PhoneBook Microservices. It contains phone book microservice and reporting microservice as a poc of some DDD practices and infra implementations.
 ## Technical Specifications:
 * .NET Core 3.1
-* ASp.Net Core WebApi as Restful Service
+* Asp.Net Core WebApi as Restful Service
 * Postgres as Database 
 * EF Core As ORM
 * RabbitMQ as message queue
