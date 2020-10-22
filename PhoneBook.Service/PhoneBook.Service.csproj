@@ -1,27 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-PhoneBook.Service-AE1436C2-D2AC-4E5E-97F2-059C07F1E6C2</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MassTransit.AspNetCore" Version="6.3.2" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="6.3.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\PhoneBook.Application\PhoneBook.Application.csproj" />
     <ProjectReference Include="..\PhoneBook.Contract\PhoneBook.Contract.csproj" />
     <ProjectReference Include="..\PhoneBook.Domain\PhoneBook.Domain.csproj" />
     <ProjectReference Include="..\PhoneBook.Infrastructure\PhoneBook.Infrastructure.csproj" />
   </ItemGroup>
-
-
 </Project>

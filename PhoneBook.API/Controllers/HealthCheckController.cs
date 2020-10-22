@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PhoneBook.Api.Modules;
 
 namespace PhoneBook.Api.Controllers
 {

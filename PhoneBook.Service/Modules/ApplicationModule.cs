@@ -5,7 +5,7 @@ using PhoneBook.Domain.PersonAggregate;
 using PhoneBook.Infrastructure.Repositories;
 using SharedKernel.Interfaces;
 
-namespace PhoneBook.Api.Modules
+namespace PhoneBook.Service.Modules
 {
 	public static class ApplicationModule
 	{

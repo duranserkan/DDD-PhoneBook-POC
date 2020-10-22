@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace PhoneBook.Api
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<PhoneBookDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PhoneBookDb")));
+			services.AddRabbitMq(Configuration);
 			services.AddApplicationServices();
 			services.AddControllers();
 			services.AddSwaggerGen();
