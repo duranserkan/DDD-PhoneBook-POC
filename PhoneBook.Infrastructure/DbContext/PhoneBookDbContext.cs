@@ -1,18 +1,23 @@
-﻿using System.Linq;
+﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using PhoneBook.Domain.ContactAggregate;
 using PhoneBook.Domain.PersonAggregate;
+using SharedKernel;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using SharedKernel;
-using SharedKernel.Interfaces;
 
 namespace PhoneBook.Infrastructure.DbContext
 {
 	public class PhoneBookDbContext : Microsoft.EntityFrameworkCore.DbContext
 	{
-		public PhoneBookDbContext(DbContextOptions<PhoneBookDbContext> options) : base(options) { }
+		private readonly IPublishEndpoint _publishEndpoint;
+
+		public PhoneBookDbContext(DbContextOptions<PhoneBookDbContext> options, IPublishEndpoint publishEndpoint) : base(options)
+		{
+			_publishEndpoint = publishEndpoint;
+		}
 
 		public DbSet<Person> People { get; set; }
 		public DbSet<Contact> Contacts { get; set; }
@@ -24,22 +29,21 @@ namespace PhoneBook.Infrastructure.DbContext
 		}
 		public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
 		{
+			var change = await base.SaveChangesAsync(cancellationToken);
 			await PublishDomainEvents();
-			return await base.SaveChangesAsync(cancellationToken);
+
+			return change;
 		}
-
-
+		
 		private async Task PublishDomainEvents()
 		{
 			var domainEventEntities = ChangeTracker.Entries<Entity>()
-				.Select(po => po.Entity)
-				.Where(po => po.Events.Any())
-				.ToArray();
+				.Select(entityEntry => entityEntry.Entity)
+				.Where(entity => entity.Events.Any())
+				.SelectMany(entity => entity.Events)
+				.Select(domainEvent => _publishEndpoint.Publish(domainEvent));
 
-			foreach (var entity in domainEventEntities)
-			{
-				//todo:publish domain events;
-			}
+			await Task.WhenAll(domainEventEntities);
 		}
 	}
 }
