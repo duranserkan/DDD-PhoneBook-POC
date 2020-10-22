@@ -1,8 +1,12 @@
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PhoneBook.Api.Modules;
+using PhoneBook.Infrastructure.DbContext;
 
 namespace PhoneBook.Api
 {
@@ -18,13 +22,17 @@ namespace PhoneBook.Api
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddDbContext<PhoneBookDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PhoneBookDb")));
+			services.AddRabbitMq(Configuration);
+			services.AddApplicationServices();
 			services.AddControllers();
 			services.AddSwaggerGen();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PhoneBookDbContext dbContext)
 		{
+			dbContext.Database.Migrate();
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();

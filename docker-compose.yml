@@ -1,0 +1,69 @@
+services:
+  phoneBookApi:
+    image: phoneBookApi:${TAG:-latest}
+    ports:
+      - 90:80
+    build:
+      context: .
+      dockerfile: PhoneBook.API/Dockerfile
+      
+  phoneBookService:
+    image: phoneBookService:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: PhoneBook.Service/Dockerfile
+
+  phoneBookDb:
+    image: postgres
+    container_name: dev_phoneBookDb
+    ports:
+      - 5432:5432
+    volumes: 
+      - phoneBookDb-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: example
+      POSTGRES_DB: PhoneBookDb
+
+  reportingDb:
+    image: postgres
+    container_name: dev_reportingDb
+    ports:
+      - 5433:5432
+    volumes: 
+      - reportingDb-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: example
+      POSTGRES_DB: ReportingDb
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+      
+  rabbitmq:
+    image: rabbitmq:3.8.9-management
+    container_name: dev_rabbit
+    hostname: rabbit1
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+    environment:
+      RABBITMQ_DEFAULT_USER: example
+      RABBITMQ_DEFAULT_PASS: example
+      RABBITMQ_DEFAULT_VHOST: /
+    command: sh -c 'rabbitmq-plugins enable rabbitmq_management; rabbitmq-server'
+volumes:
+  phoneBookDb-data:
+  reportingDb-data:
+#  rabbit-log:
+#  rabbit-lib:
+#  rabbit-etc:

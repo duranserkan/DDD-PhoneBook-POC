@@ -1,36 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using PhoneBook.Domain.PersonAggregate;
+using PhoneBook.Infrastructure.DbContext;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PhoneBook.Infrastructure.Repositories
 {
 	public class PersonRepository : IPersonRepository
 	{
-		public Task<Person> GetByIdAsync(Guid id)
+		private readonly PhoneBookDbContext _dbContext;
+
+		public PersonRepository(PhoneBookDbContext dbContext)
 		{
-			throw new NotImplementedException();
+			_dbContext = dbContext;
 		}
 
-		public Task<List<Person>> ListAsync()
+		public async Task<Person> GetByIdAsync(Guid id)
 		{
-			throw new NotImplementedException();
+			return await _dbContext.People.FindAsync(id);
 		}
 
-		public Task<Person> AddAsync(Person aggregateRoot)
+		public async Task<List<Person>> ListAsync()
 		{
-			throw new NotImplementedException();
+			return await _dbContext.People.ToListAsync();
 		}
 
-		public Task UpdateAsync(Person aggregateRoot)
+		public async Task<List<Person>> ListAsync(int skip, int take)
 		{
-			throw new NotImplementedException();
+			return await _dbContext.People.Skip(skip).Take(take).ToListAsync();
 		}
 
-		public Task DeleteAsync(Person aggregateRoot)
+		public async Task<int> CountAsync()
 		{
-			throw new NotImplementedException();
+			return await _dbContext.People.CountAsync();
+		}
+
+		public async Task AddAsync(Person aggregateRoot)
+		{
+			await _dbContext.People.AddAsync(aggregateRoot);
+		}
+
+		public void Delete(Person aggregateRoot)
+		{
+			_dbContext.People.Remove(aggregateRoot);
 		}
 	}
 }

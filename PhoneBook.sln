@@ -46,7 +46,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reporting.Domain", "Reporti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reporting.Infrastructure", "Reporting.Infrastructure\Reporting.Infrastructure.csproj", "{96B3F791-4708-4CDB-A84A-416BCBC90A78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Testing", "Common.Testing\Common.Testing.csproj", "{78A3DA95-54DF-49D4-820C-B3A8CAB2357B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Testing", "Common.Testing\Common.Testing.csproj", "{78A3DA95-54DF-49D4-820C-B3A8CAB2357B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Service", "PhoneBook.Service\PhoneBook.Service.csproj", "{C3F469BB-0F69-401A-9866-DD97F3F6FB78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +108,10 @@ Global
 		{78A3DA95-54DF-49D4-820C-B3A8CAB2357B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A3DA95-54DF-49D4-820C-B3A8CAB2357B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A3DA95-54DF-49D4-820C-B3A8CAB2357B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3F469BB-0F69-401A-9866-DD97F3F6FB78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3F469BB-0F69-401A-9866-DD97F3F6FB78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3F469BB-0F69-401A-9866-DD97F3F6FB78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3F469BB-0F69-401A-9866-DD97F3F6FB78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +132,7 @@ Global
 		{8D9F0838-1484-4E9A-9A93-DC097C715C77} = {E5623A05-D494-42F3-8247-374BE8CBA195}
 		{96B3F791-4708-4CDB-A84A-416BCBC90A78} = {E5623A05-D494-42F3-8247-374BE8CBA195}
 		{78A3DA95-54DF-49D4-820C-B3A8CAB2357B} = {7E4D95D5-6DFE-4704-B8D8-F25B11AB4F8D}
+		{C3F469BB-0F69-401A-9866-DD97F3F6FB78} = {C0A5450B-EED7-4680-B1A7-FE354F688F18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9136D444-9562-4E53-8BBB-0E880AB4BCBD}
