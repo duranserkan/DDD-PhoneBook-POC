@@ -1,6 +1,6 @@
 services:
   phoneBookApi:
-    image: phoneBookApi:${TAG:-latest}
+    image: phonebookapi:${TAG:-latest}
     ports:
       - 90:80
     build:
@@ -8,7 +8,7 @@ services:
       dockerfile: PhoneBook.API/Dockerfile
       
   phoneBookService:
-    image: phoneBookService:${TAG:-latest}
+    image: phonebookservice:${TAG:-latest}
     build:
       context: .
       dockerfile: PhoneBook.Service/Dockerfile
@@ -30,7 +30,7 @@ services:
     image: postgres
     container_name: dev_reportingDb
     ports:
-      - 5433:5432
+      - 5433:5433
     volumes: 
       - reportingDb-data:/var/lib/postgresql/data
     restart: always
@@ -44,7 +44,7 @@ services:
     restart: always
     ports:
       - 8080:8080
-      
+
   rabbitmq:
     image: rabbitmq:3.8.9-management
     container_name: dev_rabbit
