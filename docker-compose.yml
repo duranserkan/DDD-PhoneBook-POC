@@ -1,4 +1,18 @@
 services:
+  phoneBookApi:
+    image: phoneBookApi:${TAG:-latest}
+    ports:
+      - 90:80
+    build:
+      context: .
+      dockerfile: PhoneBook.API/Dockerfile
+      
+  phoneBookService:
+    image: phoneBookService:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: PhoneBook.Service/Dockerfile
+
   phoneBookDb:
     image: postgres
     container_name: dev_phoneBookDb
@@ -11,6 +25,7 @@ services:
       POSTGRES_PASSWORD: example
       POSTGRES_USER: example
       POSTGRES_DB: PhoneBookDb
+
   reportingDb:
     image: postgres
     container_name: dev_reportingDb
@@ -23,11 +38,13 @@ services:
       POSTGRES_PASSWORD: example
       POSTGRES_USER: example
       POSTGRES_DB: ReportingDb
+
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+      
   rabbitmq:
     image: rabbitmq:3.8.9-management
     container_name: dev_rabbit
