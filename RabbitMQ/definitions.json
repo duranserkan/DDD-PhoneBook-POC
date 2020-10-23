@@ -1,0 +1,30 @@
+{
+    "rabbit_version": "3.8.9",
+    "users": [{
+            "name": "example",
+            "password": "example",
+            "tags": "monitoring"
+        }, {
+            "name": "adminuser",
+            "password": "adminpass",
+            "tags": "administrator"
+        }
+    ],
+    "vhosts": [{
+            "name": "\/test"
+        }
+    ],
+    "permissions": [{
+            "user": "example",
+            "vhost": "\/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "parameters": [],
+    "policies": [],
+    "queues": [],
+    "exchanges": [],
+    "bindings": []
+}

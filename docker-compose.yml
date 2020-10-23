@@ -1,6 +1,10 @@
 services:
   phoneBookApi:
-    image: phonebookapi:${TAG:-latest}
+    image: phonebookapi:0.1.0
+    container_name: phonebookapi
+    depends_on:
+      - phoneBookDb
+      - rabbitmq
     ports:
       - 90:80
     build:
@@ -8,7 +12,11 @@ services:
       dockerfile: PhoneBook.API/Dockerfile
       
   phoneBookService:
-    image: phonebookservice:${TAG:-latest}
+    image: phonebookservice:0.1.0
+    container_name: phonebookservice
+    depends_on:
+      - phoneBookDb
+      - rabbitmq
     build:
       context: .
       dockerfile: PhoneBook.Service/Dockerfile
@@ -41,29 +49,29 @@ services:
 
   adminer:
     image: adminer
+    container_name: adminer
     restart: always
     ports:
       - 8080:8080
 
   rabbitmq:
-    image: rabbitmq:3.8.9-management
+    image: rabbitmqservice:0.1.0
+    build:
+      context: ./RabbitMQ/
     container_name: dev_rabbit
-    hostname: rabbit1
+    hostname: dev_rabbit1
     ports:
       - 5672:5672
       - 15672:15672
     volumes:
-      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
-      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - rabbit-etc:/etc/rabbitmq/
+      - rabbit-lib:/var/lib/rabbitmq/
       - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
     environment:
-      RABBITMQ_DEFAULT_USER: example
-      RABBITMQ_DEFAULT_PASS: example
       RABBITMQ_DEFAULT_VHOST: /
     command: sh -c 'rabbitmq-plugins enable rabbitmq_management; rabbitmq-server'
 volumes:
   phoneBookDb-data:
   reportingDb-data:
-#  rabbit-log:
-#  rabbit-lib:
-#  rabbit-etc:
+  rabbit-etc:
+  rabbit-lib:
