@@ -26,7 +26,6 @@ namespace PhoneBook.Api.Modules
 							h.Password(password);
 						});
 					});
-
 					return busControl;
 				});
 			});
